@@ -1,6 +1,14 @@
-# University Research Opportunity Portal (Python version)
+# University Research Opportunity Portal
 
-Computer Networks - Assignment #1 (BS CS 5B, Fall 2026), NUCES Peshawar.
+
+**Course:** Computer Networks (CN)  
+**Assignment:** Assignment No. 1  
+**Program:** BS (CS 5B)  
+**Semester:** Fall-2026  
+**University:** National University of Computer & Emerging Sciences (NUCES)
+
+**Student Name:** Wasi kamal 
+**Registration No:** 24P-0743
 
 A web application where faculty members can post, view, update, close and delete research opportunities.
 
@@ -8,7 +16,7 @@ A web application where faculty members can post, view, update, close and delete
 - **Database:** MySQL
 - **Frontend:** HTML, JavaScript, Bootstrap 5 (served by the same Flask server)
 
-GitHub Repository: https://github.com/YOUR_USERNAME/research-portal-python   <!-- TODO: replace with your real link -->
+GitHub Repository: https://github.com/wasi765/research-opportunity-portal
 
 ## Project structure
 
