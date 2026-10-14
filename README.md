@@ -77,44 +77,6 @@ Error codes: `400` invalid/missing data or bad ID, `404` opportunity not found, 
   "status": "Open"
 }
 ```
-Error body format:
-
-{ "error": "Human readable message", "details": ["field x is required"] }
-Example: create an opportunity
-curl -X POST http://localhost:3000/api/opportunities \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Machine Learning for Medical Imaging",
-    "description": "Deep learning models for early detection of retinal diseases.",
-    "research_area": "Artificial Intelligence",
-    "faculty_name": "Dr. Ayesha Khan",
-    "department": "Computer Science",
-    "required_skills": "Python, TensorFlow, CNN",
-    "positions_available": 3,
-    "application_deadline": "2026-12-15",
-    "status": "Open"
-  }'
-Response — 201 Created:
-
-{
-  "id": 1,
-  "title": "Machine Learning for Medical Imaging",
-  "description": "Deep learning models for early detection of retinal diseases.",
-  "research_area": "Artificial Intelligence",
-  "faculty_name": "Dr. Ayesha Khan",
-  "department": "Computer Science",
-  "required_skills": "Python, TensorFlow, CNN",
-  "positions_available": 3,
-  "application_deadline": "2026-12-15",
-  "status": "Open",
-  "created_at": "2026-10-07 10:15:00",
-  "updated_at": "2026-10-07 10:15:00"
-}
-Example: close an opportunity (partial update)
-curl -X PUT http://localhost:3000/api/opportunities/1 \
-  -H "Content-Type: application/json" \
-  -d '{ "status": "Closed" }'
-Response — 200 OK with the updated object. PUT accepts any subset of fields; an empty body returns 400.
 
 ## Testing with Postman
 
