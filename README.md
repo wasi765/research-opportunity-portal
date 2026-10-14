@@ -1,10 +1,8 @@
 # University Research Opportunity Portal
 
 
-**Course:** Computer Networks (CN)  
-**Assignment:** Assignment No. 1  
-**Program:** BS (CS 5B)  
-**Semester:** Fall-2026  
+
+**Program:** BS (CS 5B)   
 **University:** National University of Computer & Emerging Sciences (NUCES)
 
 **Student Name:** Wasi kamal 
