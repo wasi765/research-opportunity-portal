@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Research Opportunity Portal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. Create opportunity #1 (AI)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/opportunities", "host": ["{{baseUrl}}"], "path": ["api", "opportunities"] },
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Deep Learning for Medical Imaging\",\n  \"description\": \"Develop CNN models to detect anomalies in X-ray images.\",\n  \"research_area\": \"Artificial Intelligence\",\n  \"faculty_name\": \"Dr. Ahmed Khan\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Python, PyTorch, Deep Learning\",\n  \"positions\": 2,\n  \"deadline\": \"2026-12-31\",\n  \"status\": \"Open\"\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('201 Created', () => pm.response.to.have.status(201));", "pm.collectionVariables.set('id', pm.response.json().id);"] } }]
+    },
+    {
+      "name": "2. Create opportunity #2 (Networks)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/opportunities", "host": ["{{baseUrl}}"], "path": ["api", "opportunities"] },
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"IoT Network Security\",\n  \"description\": \"Study attacks on low-power IoT networks and build a detection prototype.\",\n  \"research_area\": \"Computer Networks\",\n  \"faculty_name\": \"Dr. Sara Ali\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Networking, Wireshark, Python\",\n  \"positions\": 3,\n  \"deadline\": \"2026-11-30\",\n  \"status\": \"Open\"\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('201 Created', () => pm.response.to.have.status(201));"] } }]
+    },
+    {
+      "name": "3. Create opportunity #3 (Software Eng.)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/opportunities", "host": ["{{baseUrl}}"], "path": ["api", "opportunities"] },
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Automated Code Review Tools\",\n  \"description\": \"Evaluate static analysis tools and propose improvements.\",\n  \"research_area\": \"Software Engineering\",\n  \"faculty_name\": \"Dr. Usman Raza\",\n  \"department\": \"Software Engineering\",\n  \"required_skills\": \"Java, Git, Testing\",\n  \"positions\": 1,\n  \"deadline\": \"2026-12-15\"\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('201 Created', () => pm.response.to.have.status(201));"] } }]
+    },
+    {
+      "name": "4. Get all opportunities",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/opportunities", "host": ["{{baseUrl}}"], "path": ["api", "opportunities"] } },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('200 OK', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "5. Get one opportunity by ID",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/opportunities/{{id}}", "host": ["{{baseUrl}}"], "path": ["api", "opportunities", "{{id}}"] } },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('200 OK', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "6. Update opportunity (title, skills, positions)",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/opportunities/{{id}}", "host": ["{{baseUrl}}"], "path": ["api", "opportunities", "{{id}}"] },
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Deep Learning for Chest X-ray Analysis\",\n  \"required_skills\": \"Python, PyTorch, OpenCV\",\n  \"positions\": 4\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('200 OK', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "7. Change status Open -> Closed",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/opportunities/{{id}}", "host": ["{{baseUrl}}"], "path": ["api", "opportunities", "{{id}}"] },
+        "body": { "mode": "raw", "raw": "{\n  \"status\": \"Closed\"\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('200 OK and Closed', () => { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql('Closed'); });"] } }]
+    },
+    {
+      "name": "8. Delete opportunity",
+      "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/api/opportunities/{{id}}", "host": ["{{baseUrl}}"], "path": ["api", "opportunities", "{{id}}"] } },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('200 OK', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "9. Get deleted opportunity (expect 404)",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/opportunities/{{id}}", "host": ["{{baseUrl}}"], "path": ["api", "opportunities", "{{id}}"] } },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('404 Not Found', () => pm.response.to.have.status(404));"] } }]
+    },
+    {
+      "name": "10. Create with invalid data (expect 400)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/opportunities", "host": ["{{baseUrl}}"], "path": ["api", "opportunities"] },
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"\",\n  \"positions\": -5,\n  \"deadline\": \"not-a-date\",\n  \"status\": \"Maybe\"\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('400 Bad Request', () => pm.response.to.have.status(400));"] } }]
+    }
+  ]
+}

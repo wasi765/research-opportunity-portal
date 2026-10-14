@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/api/opportunities"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "title": "Automated Code Review Tools",
+      "description": "Evaluate static analysis tools and propose improvements.",
+      "research_area": "Software Engineering",
+      "faculty_name": "Dr. Usman Raza",
+      "department": "Software Engineering",
+      "required_skills": "Java, Git, Testing",
+      "positions": 1,
+      "deadline": "2026-12-15"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('201 Created', () => pm.response.to.have.status(201));
+    language: text/javascript
+order: 3000

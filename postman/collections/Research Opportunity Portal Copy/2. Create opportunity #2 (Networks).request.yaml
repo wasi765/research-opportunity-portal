@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/api/opportunities"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "title": "IoT Network Security",
+      "description": "Study attacks on low-power IoT networks and build a detection prototype.",
+      "research_area": "Computer Networks",
+      "faculty_name": "Dr. Sara Ali",
+      "department": "Computer Science",
+      "required_skills": "Networking, Wireshark, Python",
+      "positions": 3,
+      "deadline": "2026-11-30",
+      "status": "Open"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('201 Created', () => pm.response.to.have.status(201));
+    language: text/javascript
+order: 2000

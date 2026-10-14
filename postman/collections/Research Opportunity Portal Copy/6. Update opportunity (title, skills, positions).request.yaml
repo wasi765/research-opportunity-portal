@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/api/opportunities/{{id}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "title": "Deep Learning for Chest X-ray Analysis",
+      "required_skills": "Python, PyTorch, OpenCV",
+      "positions": 4
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('200 OK', () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 6000

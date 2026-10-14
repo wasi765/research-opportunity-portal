@@ -1,0 +1,26 @@
+$kind: http-request
+url: "{{baseUrl}}/api/opportunities"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "title": "Deep Learning for Medical Imaging",
+      "description": "Develop CNN models to detect anomalies in X-ray images.",
+      "research_area": "Artificial Intelligence",
+      "faculty_name": "Dr. Ahmed Khan",
+      "department": "Computer Science",
+      "required_skills": "Python, PyTorch, Deep Learning",
+      "positions": 2,
+      "deadline": "2026-12-31",
+      "status": "Open"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('201 Created', () => pm.response.to.have.status(201));
+      pm.collectionVariables.set('id', pm.response.json().id);
+    language: text/javascript
+order: 1000

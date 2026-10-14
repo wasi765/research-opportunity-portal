@@ -1,0 +1,17 @@
+$kind: http-request
+name: 7. Change status Open -> Closed
+url: "{{baseUrl}}/api/opportunities/{{id}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "status": "Closed"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('200 OK and Closed', () => { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql('Closed'); });
+    language: text/javascript
+order: 7000

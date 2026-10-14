@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/api/opportunities"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "title": "",
+      "positions": -5,
+      "deadline": "not-a-date",
+      "status": "Maybe"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('400 Bad Request', () => pm.response.to.have.status(400));
+    language: text/javascript
+order: 10000
